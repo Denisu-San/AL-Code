@@ -71,7 +71,8 @@ def Calculate():
     
     return total
 
-FileName = input("Enter the filename")
+FileName = input("Enter the filename: ")
 ReadData(FileName)
 answer = Calculate()
-print(answer)
+print("Final total:", answer)
+

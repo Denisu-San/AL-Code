@@ -5,7 +5,7 @@ TopOfStack = -1
 #main
 def push(str):
     global Stack, TopOfStack
-    if len(Stack) >= MAX:
+    if TopOfStack >= MAX - 1:
         return -1
     else:
         TopOfStack += 1
@@ -17,17 +17,17 @@ def pop():
     if TopOfStack == -1:
         return "-1"
     else:
+        item = Stack[TopOfStack]
         TopOfStack -= 1
-        #Stack[TopOfStack] = "-1"
-        return Stack[TopOfStack]
+        return item
     
 
 def ReadData(filename):
     global Stack, TopOfStack
     try:
         with open(filename, 'r') as file:
-            for line in file:
-                data = line.strip()
+            lines = [line.strip() for line in file]
+            for data in reversed(lines):
                 result = push(data)
                 if result == -1:
                     print("Stack full")
@@ -46,7 +46,7 @@ def ReadData(filename):
 def Calculate():
     global Stack, TopOfStack
     if TopOfStack == -1:
-        print("Stack is empty")
+        return 0
         
     total_str = pop() #value stored as string in the stack so we pop it out and convert
     total = float(total_str)
@@ -73,7 +73,7 @@ def Calculate():
     
     return total
 
-FileName = input("Enter the fielname")
+FileName = input("Enter the filename")
 ReadData(FileName)
 answer = Calculate()
-print("answer")
+print(answer)

@@ -32,15 +32,13 @@ def ReadData(filename):
                 if result == -1:
                     print("Stack full")
                     break
-    except:
-        print("Cannot open file")
-    
-    
-    # except IOError:
-    #     print( f"ERROR: Could not read file '{filename}'")
-    # except FileNotFoundError:
-    #     print( f"ERROR: File '{filename}' could not be found")
-    # #commented out because it cannot work with a catch-all except condition like the one above
+    # except:
+    #     print("Cannot open file")
+    except IOError:
+        print( f"ERROR: Could not read file '{filename}'")
+    except FileNotFoundError:
+        print( f"ERROR: File '{filename}' could not be found")
+    #commented out because it cannot work with a catch-all except condition like the one above
 
 #note that the order of values stored is number-operator-number.....
 def Calculate():

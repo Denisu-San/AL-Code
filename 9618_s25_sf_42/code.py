@@ -1,5 +1,3 @@
-import os
-
 MAX = 20
 Stack = ["-1"]*MAX
 TopOfStack = -1
@@ -76,20 +74,21 @@ def Calculate():
     
     return total
 
-# FileName = input("Enter the filename: ")
-# ReadData(FileName)
-# answer = Calculate()
-# print("Final total:", answer)
+FileName = input("Enter the filename: ")
+ReadData(FileName)
+answer = Calculate()
+print("Final total:", answer)
 
 
 #-------------------------------------SCRIPT_DIR_APPROACH-----------------------------------
+# import os
 # --- Main program ---
-FileName = input("Enter the filename: ")
+# FileName = input("Enter the filename: ")
 
-# Get folder of the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(script_dir, FileName)
+# # Get folder of the script
+# script_dir = os.path.dirname(os.path.abspath(__file__))
+# file_path = os.path.join(script_dir, FileName)
 
-ReadData(file_path)
-answer = Calculate()
-print("Final total:", answer)
+# ReadData(file_path)
+# answer = Calculate()
+# print("Final total:", answer)

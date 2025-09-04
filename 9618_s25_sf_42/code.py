@@ -81,6 +81,8 @@ def Calculate():
 # answer = Calculate()
 # print("Final total:", answer)
 
+
+#-------------------------------------SCRIPT_DIR_APPROACH-----------------------------------
 # --- Main program ---
 FileName = input("Enter the filename: ")
 

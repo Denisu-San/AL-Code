@@ -74,21 +74,24 @@ def Calculate():
     
     return total
 
-FileName = input("Enter the filename: ")
-ReadData(FileName)
-answer = Calculate()
-print("Final total:", answer)
 
+#-------------------MAIN PROGRAMME------------------------------------
 
-#-------------------------------------SCRIPT_DIR_APPROACH-----------------------------------
-# import os
-# --- Main program ---
 # FileName = input("Enter the filename: ")
-
-# # Get folder of the script
-# script_dir = os.path.dirname(os.path.abspath(__file__))
-# file_path = os.path.join(script_dir, FileName)
-
-# ReadData(file_path)
+# ReadData(FileName)
 # answer = Calculate()
 # print("Final total:", answer)
+
+
+# -------------------------------------SCRIPT_DIR_APPROACH-----------------------------------
+import os
+# --- Main program ---
+FileName = input("Enter the filename: ")
+
+# Get folder of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(script_dir, FileName)
+
+ReadData(file_path)
+answer = Calculate()
+print("Final total:", answer)

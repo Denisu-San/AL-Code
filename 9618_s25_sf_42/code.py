@@ -81,7 +81,7 @@ def Calculate():
 # ReadData(FileName)
 # answer = Calculate()
 # print("Final total:", answer)
-
+# #when on linux make sure you use the absolute path of the file when prompted for the filename
 
 # -------------------------------------SCRIPT_DIR_APPROACH-----------------------------------
 import os

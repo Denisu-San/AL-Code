@@ -1,3 +1,5 @@
+import os
+
 MAX = 20
 Stack = ["-1"]*MAX
 TopOfStack = -1
@@ -26,8 +28,11 @@ def ReadData(filename):
     global Stack, TopOfStack
     try:
         with open(filename, 'r') as file:
-            lines = [line.strip() for line in file]
-            for data in reversed(lines):
+            # lines = [line.strip() for line in file]
+            # for data in reversed(lines):
+            #     result = push(data)
+            for line in file:
+                data = line.strip()
                 result = push(data)
                 if result == -1:
                     print("Stack full")
@@ -71,8 +76,18 @@ def Calculate():
     
     return total
 
+# FileName = input("Enter the filename: ")
+# ReadData(FileName)
+# answer = Calculate()
+# print("Final total:", answer)
+
+# --- Main program ---
 FileName = input("Enter the filename: ")
-ReadData(FileName)
+
+# Get folder of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(script_dir, FileName)
+
+ReadData(file_path)
 answer = Calculate()
 print("Final total:", answer)
-

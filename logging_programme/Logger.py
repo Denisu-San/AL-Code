@@ -10,7 +10,7 @@ class Log():
         self.__DateOut = DateOut
         
     def __str__(self):
-        return f"{self.__Name} | {self.__Date} | {self.__TimeIn} - {self.__TimeOut}"
+        return f"{self.__Name} | {self.__DateIn} | {self.__DateOut} | {self.__TimeOut} - {self.__TimeIn}"
     
     def GetName(self):
         return self.__Name
@@ -19,8 +19,7 @@ class Log():
         fmt = '%d/%m/%Y %H:%M'
         tdelta = datetime.strptime(self.__DateOut +' '+ self.__TimeOut, fmt) - datetime.strptime(self.__DateIn +' '+ self.__TimeIn, fmt)
         return tdelta
-        
-
+    
     def to_dict(self):
         return {
             "Name": str(self.__Name),
@@ -47,8 +46,30 @@ def run_logger():
     )
     print("----------------------------------------")
     
+    
+#--------OUTPUT--------
+
     print(f"Hours served by {log.GetName()}: {log.GetTimeServed()}")
     log_data = log.to_dict()
+    
+    
+#---------CHECKER/OVERWRITE--------
+    try:
+        with open("logs.txt", "r") as f:
+            lines = f.readlines()
+            for i, line in enumerate(lines):
+                existing_log = json.loads(line)
+                if existing_log["Name"] == log_data["Name"] and existing_log["DateIn"] == log_data["DateIn"]:
+                    print(f"Log entry for {log_data['Name']} on {log_data['DateIn']} already exists. Overwriting...")
+                    lines[i] = json.dumps(log_data) + "\n"
+                    with open("logs.txt", "w") as fw:
+                        fw.writelines(lines)
+                    break
+            else:
+                raise FileNotFoundError  # Trigger append if no match found
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+#--------WRITE TO FILE--------
     
     try:
         with open("logs.txt", "a") as f:
@@ -60,6 +81,5 @@ def run_logger():
         print("Cannot read logs.txt: permission denied.")
     except IOError:
         print("Error reading logs.txt.")
-
 
 run_logger()

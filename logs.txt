@@ -1,0 +1,5 @@
+{"Name": "Denis Hoareau", "DateIn": "08/09/2025", "DateOut": "08/09/2025", "TimeIn": "9:00", "TimeOut": "18:00", "Duration": "9:00:00"}
+{"Name": "Denis Hoareau", "DateIn": "08/09/2025", "DateOut": "08/09/2025", "TimeIn": "8:00", "TimeOut": "18:00", "Duration": "10:00:00"}
+{"Name": "Denis Hoareau", "DateIn": "08/09/2025", "DateOut": "08/09/2025", "TimeIn": "8:00", "TimeOut": "16:00", "Duration": "8:00:00"}
+{"Name": "Denis Hoareau", "DateIn": "08/09/2025", "DateOut": "09/09/2025", "TimeIn": "8:00", "TimeOut": "16:00", "Duration": "1 day, 8:00:00"}
+{"Name": "Denis Hoareau", "DateIn": "08/09/2025", "DateOut": "08/09/2025", "TimeIn": "9:00", "TimeOut": "18:00", "Duration": "9:00:00"}

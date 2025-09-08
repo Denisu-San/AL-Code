@@ -1,40 +1,65 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 
 class Log():
-    def __init__(self, Name, TimeIn, TimeOut, Date):
-        self.__Name = Name
+    def __init__(self, Name, TimeIn, TimeOut, DateIn, DateOut):
+        self.__Name = str(Name)
         self.__TimeIn = TimeIn
         self.__TimeOut = TimeOut
-        self.__Date = Date
+        self.__DateIn = DateIn
+        self.__DateOut = DateOut
+        
     def __str__(self):
-        return f"{self.__Name} | {self.__Date} | {self.__TimeIn} - {self.__TimeOut} | {self.__Duration}"
+        return f"{self.__Name} | {self.__Date} | {self.__TimeIn} - {self.__TimeOut}"
     
     def GetName(self):
         return self.__Name
     
     def GetTimeServed(self):
-        fmt = '%H:%M'
-        tdelta = datetime.strptime(self.__TimeOut, fmt) - datetime.strptime(self.__Time, fmt)
+        fmt = '%d/%m/%Y %H:%M'
+        tdelta = datetime.strptime(self.__DateOut +' '+ self.__TimeOut, fmt) - datetime.strptime(self.__DateIn +' '+ self.__TimeIn, fmt)
         return tdelta
         
+
     def to_dict(self):
         return {
-            "Name": self.__Name,
-            "Date": self.__Date,
+            "Name": str(self.__Name),
+            "DateIn": self.__DateIn,
+            "DateOut": self.__DateOut,
             "TimeIn": self.__TimeIn,
             "TimeOut": self.__TimeOut,
-            "Duration": str(self.__Duration)
+            "Duration": str(self.GetTimeServed())
         }
-    
 
 
 
 #----MAIN PROGRAM----
+def run_logger():
+    print("-----LOGGER PROGRAM-----")
+    print("Enter the following details:")
+    
+    log = Log(
+        input("Enter Name: "),
+        input("Enter Time In (HH:MM): "),
+        input("Enter Time Out (HH:MM): "),
+        input("Enter DateIn (dd/mm/yyyy): "),
+        input("Enter DateOut (dd/mm/yyyy): ")
+    )
+    print("----------------------------------------")
+    
+    print(f"Hours served by {log.GetName()}: {log.GetTimeServed()}")
+    log_data = log.to_dict()
+    
+    try:
+        with open("logs.txt", "a") as f:
+            f.write(json.dumps(log_data) + "\n")
+    
+    except FileNotFoundError:
+        print("File logs.txt not found.")
+    except PermissionError:
+        print("Cannot read logs.txt: permission denied.")
+    except IOError:
+        print("Error reading logs.txt.")
 
-log = input("Enter log details (Name, TimeIn, TimeOut, Date) separated by commas: ")
-log_data = log.to_dict()
-with open("logs.txt", "a") as f:
-    f.write(json.dumps(log_data) + "\n")
 
-
+run_logger()
